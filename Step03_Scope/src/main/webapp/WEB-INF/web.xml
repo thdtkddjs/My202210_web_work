@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  
+  <!-- /Step03_scope/ 경로(최상위) 요청을 했을때 응답할 페이지 목록-->
+  <display-name>Step03_Scope</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 서블릿의 위치를 알리면서 이름을 부여하기.(서블릿 명명) -->
+
+  <!-- 어떤 이름의 서블릿이 어떤 패턴의 요청을 처리할지 결정 (서블릿 매핑)-->
+  
+  
+</web-app>
