@@ -1,7 +1,13 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="test.users.dao.UsersDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	//로그인 완료 후 가야할 목적지에 대한 정보
+	String url=request.getParameter("url");
+	//혹시 실패할 때를 대비한 목적지 정보 역시 준비한다.
+	String encodedUrl=URLEncoder.encode(url);
+	
 	String str=null;
 	request.setCharacterEncoding("utf-8");
 	String id=request.getParameter("id");
@@ -24,13 +30,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
 	<h1>로그인 결과</h1>
-	<p><%=str %></p>
-	<%if (isSuc) {%>
-		<p>환영합니다! <strong><%=id %></strong> 님</p>
-	<%} %>
-	<a href="../index.jsp">돌아가기</a>
+	<div class="container">
+		<p></p>
+		<%if (isSuc) {%>
+			<p class="alert alert-sucess">
+				<%=str %> 
+				환영합니다! <strong><%=id %></strong> 님
+				<a href="<%=url%>">확인</a>	
+			</p>
+		<%} else{%>
+			<p class="alert alert-danger">
+				<%=str %>
+			<a href="${pageContext.request.contextPath }/users/loginform.jsp?url=encodedUrl">다시 시도</a>
+			</p>
+		<%} %>
+	</div>
 </body>
 </html>
