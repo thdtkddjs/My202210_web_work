@@ -15,7 +15,7 @@ String id = (String)session.getAttribute("id");
 	<div class="container">
 		<% if(id!=null){%>
 			<p>
-				<a href="${pageContext.request.contextPath }/users/profile.jsp"><strong><%=id %></strong></a>님 로그인 중...
+				<a href="${pageContext.request.contextPath }/users/private/info.jsp"><strong><%=id %></strong></a>님 로그인 중...
 				<a href="${pageContext.request.contextPath }/users/logout.jsp">로그아웃</a>
 			</p>
 		<%} else {%>

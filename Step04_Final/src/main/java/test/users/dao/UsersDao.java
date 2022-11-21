@@ -2,6 +2,7 @@ package test.users.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import test.users.dto.UsersDto;
 import test.util.DbcpBean;
@@ -20,7 +21,7 @@ public class UsersDao {
 			return dao;
 		}
 	
-	public boolean getDate(String id, String pwd) {
+	public boolean Confirm(String id, String pwd) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int rowCount = 0;
@@ -81,4 +82,106 @@ public class UsersDao {
 		return true;
 	}
 	
+	public boolean Update(UsersDto dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = new DbcpBean().getConn();
+
+			String sql = "Update Users"
+					+ " set email=?,profile=?,regdate=?"
+					+ " where id = ?";
+					
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getEmail());
+			pstmt.setString(2, dto.getProfile());
+			pstmt.setString(3, dto.getRegdate());
+			pstmt.setString(4, dto.getId());
+			pstmt.executeQuery();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return true;
+			
+	}
+	
+	public boolean pwd_Update(String id,String pwd) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = new DbcpBean().getConn();
+
+			String sql = "update users"
+					+ " set pwd=?"
+					+ " where id=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pwd);
+			pstmt.setString(2, id);
+			pstmt.executeQuery();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+
+		return true;
+	}
+	
+	public UsersDto getDate(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		UsersDto dto=null;
+		ResultSet rs=null;
+		int rowCount = 0;
+		try {
+			conn = new DbcpBean().getConn();
+
+			String sql = "select pwd,email,profile,to_char(regdate,'yy.mm.dd') as regdate"
+					+ " from users"
+					+ " where id = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto=new UsersDto();
+				dto.setPwd(rs.getString("pwd"));
+				dto.setEmail(rs.getString("email"));
+				dto.setProfile(rs.getString("profile"));
+				dto.setRegdate(rs.getString("regdate"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		
+		return dto;
+	}
 }

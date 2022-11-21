@@ -16,7 +16,7 @@
 	//로그인이 성공한 경우에는 로그인 처리도 한다.
 	UsersDao dao=UsersDao.getInstance();
 	
-	boolean isSuc=dao.getDate(id, pwd);
+	boolean isSuc=dao.Confirm(id, pwd);
 	if(isSuc) {
 		str="로그인 성공!";
 		session.setAttribute("id", id);

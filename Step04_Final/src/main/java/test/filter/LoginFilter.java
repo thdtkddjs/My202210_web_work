@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * 
  */
 
-@WebFilter("/private/*")
+@WebFilter(urlPatterns = {"/private/*", "/users/private/*"})
 public class LoginFilter implements Filter{
 
    @Override
