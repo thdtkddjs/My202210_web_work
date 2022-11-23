@@ -18,7 +18,41 @@ public class FileDao {
 		if(dao==null) {
 			dao=new FileDao();
 		}
-		return dao;
+		return dao;	
+	}
+	
+	public int getCount() {
+		int count=0;
+		//필요한 객체를 미리 생성해둔다.
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();
+
+			String sql = "select max(rownum) as num"
+					+ " from board_file";
+
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count=rs.getInt("num");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return count;
 	}
 	
 	//업로드된 파일 정보를 DB에 저장하는 메소드
@@ -129,7 +163,7 @@ public class FileDao {
 		return dto;
 	}
 	
-	public List<FileDto> getList(){
+	public List<FileDto> getList(FileDto dto){
 		//필요한 객체를 미리 생성해둔다.
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -138,22 +172,29 @@ public class FileDao {
 		try {
 			conn = new DbcpBean().getConn();
 
-			String sql = "select num, writer, title, orgFileName, fileSize, to_char(regdate, 'yyyy.mm.dd hh24:MI') as regdate"
-					+ " from board_file"
-					+ " order by num asc";
+			String sql = "select *"
+					+ " from"
+					+ "	(select result1.*, rownum as rnum"
+					+ "	from "
+					+ "		(select num, writer, title, orgFileName, fileSize, regdate"
+					+ "		from board_file"
+					+ "		order by num desc) result1)"
+					+ " where rnum between ? and ?";
 
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getStartRowNum());
+			pstmt.setInt(2, dto.getEndRowNum());
 
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				FileDto dto=new FileDto();
-				dto.setNum(rs.getInt("num"));
-				dto.setWriter(rs.getString("writer"));
-				dto.setTitle(rs.getString("title"));
-				dto.setOrgFileName(rs.getString("orgFileName"));
-				dto.setFileSize(rs.getLong("fileSize"));
-				dto.setRegdate(rs.getString("regdate"));
-				list.add(dto);
+				FileDto tmp=new FileDto();
+				tmp.setNum(rs.getInt("num"));
+				tmp.setWriter(rs.getString("writer"));
+				tmp.setTitle(rs.getString("title"));
+				tmp.setOrgFileName(rs.getString("orgFileName"));
+				tmp.setFileSize(rs.getLong("fileSize"));
+				tmp.setRegdate(rs.getString("regdate"));
+				list.add(tmp);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
