@@ -145,6 +145,35 @@ public class UsersDao {
 		return true;
 	}
 	
+	public boolean delete(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int rowCount = 0;
+		try {
+			conn = new DbcpBean().getConn();
+
+			String sql = "delete from users"
+					+ " where id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeQuery();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return true;
+			
+	}
+	
 	public UsersDto getDate(String id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

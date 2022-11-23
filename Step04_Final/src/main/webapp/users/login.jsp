@@ -46,7 +46,7 @@
 		<%} else{%>
 			<p class="alert alert-danger">
 				<%=str %>
-			<a href="${pageContext.request.contextPath }/users/loginform.jsp?url=encodedUrl">다시 시도</a>
+			<a href="${pageContext.request.contextPath }/users/loginform.jsp?url=<%=encodedUrl%>">다시 시도</a>
 			</p>
 		<%} %>
 	</div>

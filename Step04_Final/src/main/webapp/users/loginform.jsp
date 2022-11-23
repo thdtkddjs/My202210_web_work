@@ -27,11 +27,11 @@
 			<!-- 로그인 성공 후 갈 장소에 대한 정보를 전달 -->
 			<input type="hidden" name="url" value="<%=url %>" />
 			<div>
-				<label class="form-label" for="id"></label>
+				<label class="form-label" for="id">ID</label>
 				<input class="form-control" type="text" name="id" id="id" />
 			</div>
 			<div>
-				<label class="form-label" for="pwd"></label>
+				<label class="form-label" for="pwd">패스워드</label>
 				<input class="form-control" type="password" name="pwd" id="pwd" />
 			</div>
 			<button class="btn btn-primary" type="submit">로그인</button>		

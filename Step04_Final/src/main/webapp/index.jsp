@@ -26,6 +26,8 @@ String id = (String)session.getAttribute("id");
 			<li><a href="${pageContext.request.contextPath }/users/signup_form.jsp">회원가입</a></li>
 			<li><a href="${pageContext.request.contextPath }/private/study.jsp">회원전용공간(공부)</a></li>
 			<li><a href="${pageContext.request.contextPath }/private/game.jsp">회원전용공간(게임)</a></li>
+			<li><a href="file/list.jsp">자료실</a></li>
+		
 		</ul>
 	</div>
 
