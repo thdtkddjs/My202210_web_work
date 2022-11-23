@@ -57,6 +57,36 @@ public class FileDao {
 			return false;
 	}
 	
+	public boolean delete(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int rowCount = 0;
+		try {
+			conn = new DbcpBean().getConn();
+
+			String sql = "delete from board_file"
+					+ " where num=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeQuery();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if (rowCount > 0) {
+			return true;
+		} else
+			return false;
+	}
+	
 	public FileDto getData(int num) {
 		//필요한 객체를 미리 생성해둔다.
 		Connection conn = null;

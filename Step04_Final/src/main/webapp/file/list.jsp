@@ -4,6 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	//로그인된 아이디를 읽어온다.(로그인을 하지 않았다면 null일수도 있다.)
+	String id=(String)session.getAttribute("id");
 	//파일 목록을 얻어와서
 	List<FileDto> list=FileDao.getInstance().getList();
 	//응답하기
@@ -43,12 +45,23 @@
 					<td><%=tmp.getFileSize() %></td>
 					<td><%=tmp.getRegdate() %></td>
 					<td>
-						<a href="delete.jsp">삭제</a>
+						<%if(tmp.getWriter().equals(id)) {%>
+							<a href="javascript:deleteConfirm(<%=tmp.getNum()%>)">삭제</a>
+						<%} %>
 					</td>
 				</tr>
 			<%} %>
 			</tbody>
 		</table>
 	</div>
+	<script>
+		function deleteConfirm(num){
+			let isDel=confirm("삭제하시겠습니까?");
+			if(isDel){
+				location.href="delete.jsp?num="+num;
+			}
+		}
+	
+	</script>
 </body>
 </html>
