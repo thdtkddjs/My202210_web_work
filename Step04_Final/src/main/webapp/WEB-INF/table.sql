@@ -19,3 +19,15 @@ CREATE TABLE board_file(
 );
 
 CREATE SEQUENCE board_file_seq; 
+
+-- 게시글을 저장할 테이블
+create table board_cafe(
+	num number primary key,--글번호
+	writer varchar2(100) not null, --작성자(로그인된 아이디)
+	title varchar2(100) not null, -- 제목
+	content CLOB, --글 내용
+	viewCount number, -- 조회수
+	regdate date --글 작성일
+);
+--게시글의 번호를 얻어낼 시퀀스
+create sequence board_cafe_seq;

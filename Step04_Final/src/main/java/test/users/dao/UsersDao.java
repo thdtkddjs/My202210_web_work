@@ -89,15 +89,14 @@ public class UsersDao {
 			conn = new DbcpBean().getConn();
 
 			String sql = "Update Users"
-					+ " set email=?,profile=?,regdate=?"
+					+ " set email=?,profile=?"
 					+ " where id = ?";
 					
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getEmail());
 			pstmt.setString(2, dto.getProfile());
-			pstmt.setString(3, dto.getRegdate());
-			pstmt.setString(4, dto.getId());
+			pstmt.setString(3, dto.getId());
 			pstmt.executeQuery();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -174,12 +173,11 @@ public class UsersDao {
 			
 	}
 	
-	public UsersDto getDate(String id) {
+	public UsersDto getData(String id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		UsersDto dto=null;
 		ResultSet rs=null;
-		int rowCount = 0;
 		try {
 			conn = new DbcpBean().getConn();
 
@@ -193,6 +191,7 @@ public class UsersDao {
 			
 			if(rs.next()) {
 				dto=new UsersDto();
+				dto.setId(id);
 				dto.setPwd(rs.getString("pwd"));
 				dto.setEmail(rs.getString("email"));
 				dto.setProfile(rs.getString("profile"));

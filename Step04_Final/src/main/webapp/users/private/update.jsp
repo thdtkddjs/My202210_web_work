@@ -5,13 +5,18 @@
 <%
 	String str=null;
 	
-	String id=request.getParameter("id");
-	String pwd=request.getParameter("pwd");
+	String id=(String)session.getAttribute("id");
 	String email=request.getParameter("email");
 	String profile=request.getParameter("profile");
-	String regdate=request.getParameter("regdate");
 	
-	UsersDto dto=new UsersDto(id,pwd,email,profile,regdate);
+	UsersDto dto=new UsersDto();
+	dto.setId(id);
+	dto.setEmail(email);
+	
+	if (!profile.equals("empty")){
+		dto.setProfile(profile);
+	}
+	
 	boolean isSuc = UsersDao.getInstance().Update(dto);
 	
 	if(isSuc) str="수정 성공!";
