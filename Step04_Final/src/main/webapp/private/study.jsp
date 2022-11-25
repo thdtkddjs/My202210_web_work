@@ -22,5 +22,6 @@
 		<p><%=id %>님 열심히 공부해요!</p>
 		<a href="../index.jsp">돌아가기</a>
 	</div>
+<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>

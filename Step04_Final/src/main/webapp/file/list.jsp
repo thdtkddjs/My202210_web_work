@@ -112,6 +112,7 @@
 			</ul>
 		</nav>
 	</div>
+<jsp:include page="/include/footer.jsp"></jsp:include>
 	<script>
 		function deleteConfirm(num){
 			let isDel=confirm("삭제하시겠습니까?");
