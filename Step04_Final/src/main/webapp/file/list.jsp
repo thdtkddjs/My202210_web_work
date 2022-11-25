@@ -31,7 +31,7 @@
 	//전체 글의 갯수
 	int totalRow=FileDao.getInstance().getCount();
 	//전체 페이지의 갯수 구하기
-	int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
+	int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_DISPLAY_COUNT);
 	//끝 페이지 번호가 전체 페이지 갯수보다 많다면 오류가 생긴다.
 	if(endPageNum > totalPageCount){
 		endPageNum=totalPageCount;//보정해준다.

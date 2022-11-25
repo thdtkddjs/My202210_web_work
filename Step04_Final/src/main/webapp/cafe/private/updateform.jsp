@@ -1,10 +1,17 @@
+<%@page import="test.cafe.dao.CafeDao"%>
+<%@page import="test.cafe.dto.CafeDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	int num=Integer.parseInt(request.getParameter("num"));
+
+	CafeDto dto=CafeDao.getInstance().getData(num);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/cafe/private/insertform.jsp</title>
+<title>/cafe/private/updateform.jsp</title>
 <style>
 	textarea{
 		width: 768ps;
@@ -13,16 +20,17 @@
 </style>
 </head>
 <body>
-   <div class="container">
-      <h3>새글 작성 폼입니다.</h3>
-      <form action="insert.jsp" method="post">
+<div class="container">
+      <h3>수정 폼 입니다.</h3>
+      <form action="update.jsp" method="post">
+      	<input type="hidden" name="num" value="<%=dto.getNum() %>" />
          <div>
             <label for="title">제목</label>
-            <input type="text" name="title" id="title"/>
+            <input type="text" name="title" id="title" value="<%=dto.getTitle()%>"/>
          </div>
          <div>
             <label for="content">내용</label>
-            <textarea name="content" id="content" rows="10"></textarea>
+            <textarea name="content" id="content" rows="10"><%=dto.getContent() %></textarea>
          </div>
          <button type="submit" onclick="submitContents(this)">저장</button>
       </form>
@@ -97,6 +105,6 @@
          var nFontSize = 24;
          oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
       }
-   </script>   
+   </script>
 </body>
 </html>
