@@ -64,8 +64,8 @@
 		%>
 		<%-- 만일 글 작성자가 로그인된 아이디와 같다면 수정, 삭제 링크를 제공한다. --%>
       <%if(dto.getWriter().equals(id)){ %>
-         <a href="private/updateform.jsp?num=<%=dto.getNum()%>">수정</a>
-         <a href="javascript:" onclick="deleteConfirm()">삭제</a>
+         <a class="btn btn-primary" href="private/updateform.jsp?num=<%=dto.getNum()%>">수정</a>
+         <a class="btn btn-secondary" href="javascript:" onclick="deleteConfirm()">삭제</a>
          <script>
             function deleteConfirm(){
                const isDelete=confirm("이 글을 삭제 하겠습니까?");
@@ -75,7 +75,8 @@
             }
          </script>
       <%} %>      
-
+		
+		<a class="btn btn-warning" href="${pageContext.request.contextPath }/cafe/list.jsp">돌아가기</a>
 	</div>
 </body>
 </html>

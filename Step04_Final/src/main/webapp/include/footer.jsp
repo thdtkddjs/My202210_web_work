@@ -26,8 +26,10 @@
 	}
 	function alertbootstraps(){
 		alert("I love this site")
-		confirm("Shall we?");
-		location.href="https://getbootstrap.com/";
+		const isGo=confirm("Shall we? if you confirm, we move to bootstrap page");
+		if(isGo){
+			location.href="https://getbootstrap.com/";
+		}
 	}
 
 </script>

@@ -30,6 +30,7 @@
 				<input type="file" name="myFile" id="myFile" />
 			</div>
 			<button type="submit">업로드</button>
+			<a class="btn btn-warning" href="../list.jsp">돌아가기</a>
 		</form>
 		
 	</div>

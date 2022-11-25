@@ -26,7 +26,8 @@
             <label for="content">내용</label>
             <textarea name="content" id="content" rows="10"></textarea>
          </div>
-         <button type="submit" onclick="submitContents(this)">저장</button>
+         <button type="submit" onclick="submitContents(this)">저장</button>         
+	   <a class="btn btn-warning" href="${pageContext.request.contextPath }/cafe/list.jsp">취소</a>
       </form>
    </div>
       <%--

@@ -35,7 +35,9 @@
             <textarea name="content" id="content" rows="10"><%=dto.getContent() %></textarea>
          </div>
          <button type="submit" onclick="submitContents(this)">저장</button>
+         <a class="btn btn-warning" href="${pageContext.request.contextPath }/cafe/detail.jsp?num=<%=num%>">취소</a>
       </form>
+      
    </div>
       <%--
       [ SmartEditor 를 사용하기 위한 설정 ]
