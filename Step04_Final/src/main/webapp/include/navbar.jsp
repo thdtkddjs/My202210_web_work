@@ -8,7 +8,7 @@ String id=(String)session.getAttribute("id");
 %>    
 
 	<div class="container">
-				<nav class="navbar navbar-expand-lg bg-light">
+			<nav class="navbar navbar-expand-lg bg-light fw-bold">
 			<div class="container-fluid">
 			<a class="navbar-brand" href="${pageContext.request.contextPath }/index.jsp">Navbar</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

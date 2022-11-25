@@ -15,7 +15,7 @@
 </head>
 <body>
 <jsp:include page="/include/navbar.jsp">
-		<jsp:param value="file" name="thisPage"/>
+		<jsp:param value="study" name="thisPage"/>
 </jsp:include>
 	<div class="container">
 		<h1>공부 페이지입니다.</h1>
