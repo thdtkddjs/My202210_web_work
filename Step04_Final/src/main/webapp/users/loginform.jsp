@@ -19,12 +19,22 @@
 <head>
 <meta charset="UTF-8">
 <title>/users/loginform.jsp</title>
+<style>
+.card{
+	margin: 200px 0 0 200px ;
+	width: 40rem; 
+	height: 40rem;
+}
+</style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="container">
-		<h1>로그인 페이지</h1>
+	<div class="card">
+		<br />
+		<br />
+		<br />
+		<h2 class="card-title text-center">로그인 페이지</h2>
 		<form action="login.jsp" method="post">
 			<!-- 로그인 성공 후 갈 장소에 대한 정보를 전달 -->
 			<input type="hidden" name="url" value="<%=url %>" />
