@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	//아이디 저장으로 세션에 저장된 ID가 30분 안에 있었는데 확인
+	String id=(String)session.getAttribute("id2");
 	//get 방식 파라미터 url이라는 이름으로 전달되는 값이 있는지 확인
 	String url=request.getParameter("url");
 	//만일 넘어오는 값이 없다면
@@ -27,12 +29,23 @@
 			<!-- 로그인 성공 후 갈 장소에 대한 정보를 전달 -->
 			<input type="hidden" name="url" value="<%=url %>" />
 			<div>
+				<%if(id!=null){ %>
 				<label class="form-label" for="id">ID</label>
-				<input class="form-control" type="text" name="id" id="id" />
+				<input class="form-control" type="text" name="id" id="id" value="<%=id%>"/>
+				<%}else{ %>
+				<label class="form-label" for="id">ID</label>
+				<input class="form-control" type="text" name="id" id="id" value=""/>
+				<%} %>
 			</div>
 			<div>
 				<label class="form-label" for="pwd">패스워드</label>
 				<input class="form-control" type="password" name="pwd" id="pwd" />
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="isRemem" name="flexCheckChecked" id="flexCheckChecked" checked>
+				<label class="form-check-label" for="flexCheckChecked">
+				  아이디 저장
+				</label>
 			</div>
 			<button class="btn btn-primary" type="submit">로그인</button>		
 		</form>
