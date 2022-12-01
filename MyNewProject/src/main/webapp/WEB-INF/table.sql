@@ -4,6 +4,8 @@ create table admin_user(
 	num number primary key,
 	name varchar2(10) not null,
 	email varchar2(20) not null,
+	id varchar2(10) not null,
+	pwd varchar2(20) not null,
 	sal number not null,
 	rank number not null,
 	regdate date
@@ -17,6 +19,8 @@ create table public_user(
 	num number primary key,
 	name varchar2(20) not null,
 	email varchar2(20),
+	id varchar2(10) not null,
+	pwd varchar2(20) not null,
 	rank number not null,
 	regdate date
 );
@@ -30,8 +34,10 @@ create table shop_user(
 	num number primary key,
 	name varchar2(50) not null,
 	phone varchar2(20) not null,
+	id varchar2(10) not null,
+	pwd varchar2(20) not null,
 	rank number not null,
-	claim number not null,
+	claim number not null
 );
 
 create sequence shop_user_seq;

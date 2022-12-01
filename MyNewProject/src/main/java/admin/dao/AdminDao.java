@@ -20,6 +20,36 @@ public class AdminDao {
 		return dao;
 	}
 	
+	public boolean Confirm(String id, String pwd) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int rowCount = 0;
+		try {
+			conn = new DbcpBean().getConn();
+
+			String sql = "select regdate"
+					+ " from admin_user"
+					+ " where id=? and pwd=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			rowCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if(rowCount>0) return true;	
+		else return false;
+	}
+	
 	public boolean insert(AdminDto dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -28,13 +58,15 @@ public class AdminDao {
 			conn = new DbcpBean().getConn();
 
 			String sql = "insert into Admin_User"
-					+ " (num, name, email, sal, rank, regdate)"
-					+ " values(Admin_User_seq.nextval, ?, ?, 0, ?, sysdate)";
+					+ " (num, name, email, id, pwd, sal, rank, regdate)"
+					+ " values(Admin_User_seq.nextval, ?, ?, ?, ?, 0, ?, sysdate)";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getName());
 			pstmt.setString(2, dto.getEmail());
-			pstmt.setInt(3, dto.getRank());
+			pstmt.setString(3, dto.getId());
+			pstmt.setString(4, dto.getPwd());
+			pstmt.setInt(5, dto.getRank());
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

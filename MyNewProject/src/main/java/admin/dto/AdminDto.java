@@ -4,17 +4,21 @@ public class AdminDto {
 	private int num;
 	private String name;
 	private String email;
+	private String id;
+	private String pwd;
 	private int sal;
 	private int rank;
 	private String regdate;
 	
 	public AdminDto() {}
 
-	public AdminDto(int num, String name, String email, int sal, int rank, String regdate) {
+	public AdminDto(int num, String name, String email, String id, String pwd, int sal, int rank, String regdate) {
 		super();
 		this.num = num;
 		this.name = name;
 		this.email = email;
+		this.id = id;
+		this.pwd = pwd;
 		this.sal = sal;
 		this.rank = rank;
 		this.regdate = regdate;
@@ -44,6 +48,22 @@ public class AdminDto {
 		this.email = email;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
 	public int getSal() {
 		return sal;
 	}
@@ -67,6 +87,8 @@ public class AdminDto {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+
+	
 	
 	
 }

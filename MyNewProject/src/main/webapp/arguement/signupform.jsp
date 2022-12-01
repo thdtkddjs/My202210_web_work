@@ -4,10 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 등록</title>
 </head>
 <body>
 	<form action="signup.jsp" method="post">
+		<div>
+			<label for="id">아이디</label>
+			<input type="text" name="id" id="id"/>
+		</div>
+		<div>
+			<label for="pwd">비밀번호</label>
+			<input type="text" name="pwd" id="pwd"/>
+		</div>
 		<div>
 			<label for="name">이름</label>
 			<input type="text" name="name" id="name"/>
