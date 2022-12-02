@@ -1,10 +1,17 @@
+<%@page import="review.dao.ReviewDao"%>
+<%@page import="review.dto.ReviewDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	int num=Integer.parseInt(request.getParameter("num"));
+
+	ReviewDto dto=ReviewDao.getInstance().getData(num);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/cafe/private/insertform.jsp</title>
+<title>/cafe/private/updateform.jsp</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <style>
@@ -15,21 +22,22 @@
 </style>
 </head>
 <body>
-   <div class="container">
-      <h3 class="text-center">리뷰 작성</h3>
-      <p class="text-bold text-primary">리뷰에는 바르고 고운말을 써주세요...</p>
-      <form action="insert.jsp" method="post">
+<div class="container">
+      <h3 class="text-center">수정 폼 입니다.</h3>
+      <form action="update.jsp" method="post">
+      	<input type="hidden" name="num" value="<%=dto.getNum() %>" />
          <div>
             <label for="title">제목</label>
-            <input type="text" name="title" id="title"/>
+            <input type="text" name="title" id="title" value="<%=dto.getTitle()%>"/>
          </div>
          <div>
             <label for="content">내용</label>
-            <textarea name="content" id="content" rows="10"></textarea>
+            <textarea name="content" id="content" rows="10"><%=dto.getContent() %></textarea>
          </div>
-         <button type="submit" onclick="submitContents(this)">저장</button>         
-	   <a class="btn btn-warning" href="${pageContext.request.contextPath }/cafe/list.jsp">취소</a>
+         <button type="submit" onclick="submitContents(this)">저장</button>
+         <a class="btn btn-warning" href="${pageContext.request.contextPath }/review/detail.jsp?num=<%=num%>">취소</a>
       </form>
+      
    </div>
       <%--
       [ SmartEditor 를 사용하기 위한 설정 ]
@@ -101,6 +109,6 @@
          var nFontSize = 24;
          oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
       }
-   </script>   
+   </script>
 </body>
 </html>

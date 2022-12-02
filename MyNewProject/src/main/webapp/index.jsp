@@ -16,7 +16,6 @@ String id = (String)session.getAttribute("id");
 </head>
 <body>
 	<h>시작하기</h>
-	<a href="${pageContext.request.contextPath }/users/loginform.jsp">로그인하기</a>
 	<a href="${pageContext.request.contextPath }/review/list.jsp">리뷰 목록</a>
 	<a href="${pageContext.request.contextPath }/claim/list.jsp">사장님들 쉼터</a>
 	<a href="${pageContext.request.contextPath }/arguement/list.jsp">관리자 공간</a>

@@ -41,3 +41,19 @@ create table shop_user(
 );
 
 create sequence shop_user_seq;
+
+-- review에 대한 테이블
+-- viewcount는 관리자에 의한 조작이 가능
+-- 삭제는 관리자만 가능
+-- 내용 수정, 좋아요는 일반 유저만 가능
+create table review(
+	num number primary key,
+	writer varchar2(50) not null,
+	title varchar2(20) not null,
+	content CLOB,
+	viewcount number,
+	likes number,
+	regdate date
+);
+
+create sequence review_seq;
